@@ -1,9 +1,7 @@
 from connection import request
 
-
 # Example Request
 # request(action="/orderBook/L2",method="GET",params={"symbol":"XBT"})
-
 
 # Executions
 def get_execution():
@@ -26,13 +24,12 @@ def delete_orders():
 	pass
 
 # Orderbook
-def get_orderbook():
-	pass
+def get_orderbook(session, symbol="XBT",depth=1):
+	return request(session=session, action="/orderBook/L2",method="GET",params={"symbol":symbol,"depth":depth})
 
 # Account Positions
 def get_positions():
 	pass
-
 
 # Quotes
 def get_quotes():
