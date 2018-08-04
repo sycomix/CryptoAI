@@ -28,7 +28,7 @@ while True:
 
     duration = round(1000*(time.time()-start_time))
 
-    with open("data/6-30_132.csv", "a", newline="") as file_object:
+    with open("data/trades.csv", "a", newline="") as file_object:
         writer = csv.writer(file_object)
         # if request_count == 1:
         #     writer.writerow(trade_data[0].keys())

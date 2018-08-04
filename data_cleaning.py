@@ -1,6 +1,7 @@
 import pandas as pd
 import datetime
 import numpy as np
+import os
 
 data = pd.read_csv("data/trade_data.csv")
 
@@ -20,7 +21,7 @@ data.drop("symbol", axis=1, inplace=True)
 # Convert timestamp from string to timevalue integer
 data["timestamp"] = data["timestamp"].map(arg=datetime_to_timestamp)
 
-data["ohlc"] = (data["open"]+data["high"]+data["low"]+data["close"])/4
+data["ohlc"] = (data["open"] + data["high"] + data["low"] + data["close"]) / 4
 
 # Replace VWAP NaN values with OHLC
 data["vwap"] = data["vwap"].fillna(value=data["ohlc"])
@@ -45,5 +46,10 @@ data_formats = {
     "3d": data.iloc[::4320, :],
     "1w": data.iloc[::10080, :]}
 
+data["timestamp"] -= data["timestamp"].min()
+
+if not os.path.exists("data/trades"):
+    os.makedirs("data/trades")
+
 for timedelta, dataset in data_formats.items():
-    dataset.to_csv(path_or_buf=f"data/trades_{timedelta}.csv", index=False)
+    dataset.to_csv(path_or_buf=f"data/trades/{timedelta}.csv", index=False)
