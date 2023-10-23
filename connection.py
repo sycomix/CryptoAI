@@ -3,9 +3,9 @@ from auth import auth_headers
 from config import BASE_URL
 
 def request(session, action,method,params=None):
-    path = "/api/v1" + action
+    path = f"/api/v1{action}"
     if params:
-        path+="?"+urllib.parse.urlencode(params)
+        path += f"?{urllib.parse.urlencode(params)}"
     headers = auth_headers(method,path)
     session.headers.update(headers)
     if method.upper()=="GET":

@@ -17,7 +17,8 @@ def optimal_decision(dataframe):
 
 
 for timedelta in os.listdir("./data/trades"):
-    dataframe = pd.read_csv("./data/trades/{}".format(timedelta)
-                            )[["timestamp", "volume", "ohlc", "decision"]]
+    dataframe = pd.read_csv(f"./data/trades/{timedelta}")[
+        ["timestamp", "volume", "ohlc", "decision"]
+    ]
     dataframe = optimal_decision(dataframe)
-    dataframe.to_csv("./data/trades/{}".format(timedelta), index=False)
+    dataframe.to_csv(f"./data/trades/{timedelta}", index=False)

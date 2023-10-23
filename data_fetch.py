@@ -35,6 +35,7 @@ while True:
         writer.writerows([trade_data[x].values()
                           for x in range(len(trade_data))])
     current_datetime = datetime.datetime.fromtimestamp(round(start_time))
-    print("Last trade datetime: {}, Request took : {} ms".format(
-        trade_data[-1]['timestamp'], duration))
+    print(
+        f"Last trade datetime: {trade_data[-1]['timestamp']}, Request took : {duration} ms"
+    )
     time.sleep(2)
